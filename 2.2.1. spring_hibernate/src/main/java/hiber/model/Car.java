@@ -14,21 +14,25 @@ public class Car {
     @Column(name = "series")
     private int series;
 
+
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+    private User user;
+
     public Car() {
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", series=" + series +
-                '}';
-    }
 
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -53,5 +57,14 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", series=" + series +
+                '}';
     }
 }
